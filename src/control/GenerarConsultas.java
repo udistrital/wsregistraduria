@@ -7,6 +7,10 @@ package control;
 
 import consultasWebService.ConsultasWebService;
 import java.util.List;
+import webservice.CambiarContrasena;
+import webservice.CambiarContrasenaResponse;
+import webservice.CambioClaveRequest;
+import webservice.CambioClaveResponse;
 import webservice.ConsultarCedulas;
 import webservice.ConsultarCedulasResponse;
 import webservice.Datos;
@@ -41,5 +45,34 @@ public class GenerarConsultas {
         throw new Exception("El web service ha lanzado una respuesta nula");
     }
     }
-    //
+    public static boolean cambiarContraseña(String nuevaContraseña) throws Exception{
+        CambiarContrasena nuevaContrasenaInfo= new CambiarContrasena();
+        CambioClaveRequest request = new CambioClaveRequest();
+        String ip="10.20.0.15";
+        String password="password";
+        String usuario="UNIDISTRITAL";
+        
+        nuevaContraseña = Cifrador.cifrarTexto(nuevaContraseña, "public_bin.key");
+        password = Cifrador.cifrarTexto(password,"public_bin.key");
+        
+        request.setNuevaClave(nuevaContraseña);
+        request.setConfirmarNuevaClave(nuevaContraseña);
+        
+        nuevaContrasenaInfo.setCambioClaveRequest(request);
+        
+        CambiarContrasenaResponse respuesta = ConsultasWebService.cambiarContrasena(nuevaContrasenaInfo, ip, password, usuario);
+        if(respuesta!=null){
+        //el web service devuelve el codigo 014 cuando el cambio de contraseña es exxitoso
+            if(respuesta.getReturn().getEstadoCambioClave().getCodError().equals("014")){
+                return true;
+            }else{
+                throw new Exception("Ha ocurrido un error al cambiar la contraseña"
+                        +respuesta.getReturn().getEstadoCambioClave().getCodError()
+                        +" "+respuesta.getReturn().getEstadoCambioClave().getDescripcionError());
+            }
+        }else{
+            throw new Exception("El web service ha lanzado  una respuesta nula");
+        }        
+        
+    }
 }
