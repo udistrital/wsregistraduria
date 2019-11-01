@@ -16,22 +16,22 @@
             <classpath path="${libs.jaxws21.classpath}"/>
         </taskdef>
     </target>
-    <target name="wsimport-client-WSConsultas" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/WSConsultas"/>
-        <property name="wsdl-WSConsultas" location="xml-resources/web-service-references/WSConsultas/wsdl/10.20.0.15/registraduria/aniwsV2/WSConsultas.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WSConsultas" destdir="${build.generated.dir}/jax-wsCache/WSConsultas" wsdl="${wsdl-WSConsultas}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://10.20.0.15/registraduria/aniwsV2/WSConsultas?wsdl" xnocompile="true" xendorsed="true" package="webservice">
-            <depends file="${wsdl-WSConsultas}"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/WSConsultas"/>
+    <target name="wsimport-client-registraduria" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/registraduria"/>
+        <property name="wsdl-registraduria" location="xml-resources/web-service-references/registraduria/wsdl/registraduria.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/registraduria" destdir="${build.generated.dir}/jax-wsCache/registraduria" wsdl="${wsdl-registraduria}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="file:/home/juan/Descargas/Universidad%20Distrital/registraduria.wsdl" xnocompile="true" xendorsed="true" package="webservice">
+            <depends file="${wsdl-registraduria}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/registraduria"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/WSConsultas">
+            <fileset dir="${build.generated.dir}/jax-wsCache/registraduria">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-WSConsultas" depends="-init-project">
-        <delete dir="${build.generated.dir}/jax-wsCache/WSConsultas"/>
+    <target name="wsimport-client-clean-registraduria" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/registraduria"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/webservice"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-WSConsultas"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-registraduria"/>
 </project>

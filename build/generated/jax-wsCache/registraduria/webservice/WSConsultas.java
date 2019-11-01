@@ -31,14 +31,14 @@ public interface WSConsultas {
      * @param usuario
      * @param parameters
      * @return
-     *     returns webservice.ConsultarCedulasResponse
+     *     returns webservice.CambiarContrasenaResponse
      */
     @WebMethod
-    @WebResult(name = "consultarCedulasResponse", targetNamespace = "http://ws.ani.rnec.gov.co/", partName = "result")
-    @Action(input = "http://ws.ani.rnec.gov.co/WSConsultas/consultarCedulasRequest", output = "http://ws.ani.rnec.gov.co/WSConsultas/consultarCedulasResponse")
-    public ConsultarCedulasResponse consultarCedulas(
-        @WebParam(name = "consultarCedulas", targetNamespace = "http://ws.ani.rnec.gov.co/", partName = "parameters")
-        ConsultarCedulas parameters,
+    @WebResult(name = "cambiarContrasenaResponse", targetNamespace = "http://ws.ani.rnec.gov.co/", partName = "result")
+    @Action(input = "http://ws.ani.rnec.gov.co/WSConsultas/cambiarContrasenaRequest", output = "http://ws.ani.rnec.gov.co/WSConsultas/cambiarContrasenaResponse")
+    public CambiarContrasenaResponse cambiarContrasena(
+        @WebParam(name = "cambiarContrasena", targetNamespace = "http://ws.ani.rnec.gov.co/", partName = "parameters")
+        CambiarContrasena parameters,
         @WebParam(name = "ip", targetNamespace = "http://ws.ani.rnec.gov.co/", header = true, partName = "ip")
         String ip,
         @WebParam(name = "contrasena", targetNamespace = "http://ws.ani.rnec.gov.co/", header = true, partName = "contrasena")
@@ -53,14 +53,14 @@ public interface WSConsultas {
      * @param usuario
      * @param parameters
      * @return
-     *     returns webservice.CambiarContrasenaResponse
+     *     returns webservice.ConsultarCedulasResponse
      */
     @WebMethod
-    @WebResult(name = "cambiarContrasenaResponse", targetNamespace = "http://ws.ani.rnec.gov.co/", partName = "result")
-    @Action(input = "http://ws.ani.rnec.gov.co/WSConsultas/cambiarContrasenaRequest", output = "http://ws.ani.rnec.gov.co/WSConsultas/cambiarContrasenaResponse")
-    public CambiarContrasenaResponse cambiarContrasena(
-        @WebParam(name = "cambiarContrasena", targetNamespace = "http://ws.ani.rnec.gov.co/", partName = "parameters")
-        CambiarContrasena parameters,
+    @WebResult(name = "consultarCedulasResponse", targetNamespace = "http://ws.ani.rnec.gov.co/", partName = "result")
+    @Action(input = "http://ws.ani.rnec.gov.co/WSConsultas/consultarCedulasRequest", output = "http://ws.ani.rnec.gov.co/WSConsultas/consultarCedulasResponse")
+    public ConsultarCedulasResponse consultarCedulas(
+        @WebParam(name = "consultarCedulas", targetNamespace = "http://ws.ani.rnec.gov.co/", partName = "parameters")
+        ConsultarCedulas parameters,
         @WebParam(name = "ip", targetNamespace = "http://ws.ani.rnec.gov.co/", header = true, partName = "ip")
         String ip,
         @WebParam(name = "contrasena", targetNamespace = "http://ws.ani.rnec.gov.co/", header = true, partName = "contrasena")

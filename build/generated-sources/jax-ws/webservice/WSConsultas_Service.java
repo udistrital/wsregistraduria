@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "WSConsultas", targetNamespace = "http://ws.ani.rnec.gov.co/", wsdlLocation = "http://10.20.0.15/registraduria/aniwsV2/WSConsultas?wsdl")
+@WebServiceClient(name = "WSConsultas", targetNamespace = "http://ws.ani.rnec.gov.co/", wsdlLocation = "file:/home/juan/Descargas/Universidad%20Distrital/registraduria.wsdl")
 public class WSConsultas_Service
     extends Service
 {
@@ -30,7 +30,7 @@ public class WSConsultas_Service
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://10.20.0.15/registraduria/aniwsV2/WSConsultas?wsdl");
+            url = new URL("file:/home/juan/Descargas/Universidad%20Distrital/registraduria.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

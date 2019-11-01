@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/JuanDavid/Documents/NetBeansProjects/WsRegistraduria/src/wsregistraduria/PruebasConsultas.java</file>
-            <file>file:/C:/Users/JuanDavid/Documents/NetBeansProjects/WsRegistraduria/src/consultasWebService/ConsultasWebService.java</file>
-            <file>file:/C:/Users/JuanDavid/Documents/NetBeansProjects/WsRegistraduria/src/control/Cifrador.java</file>
-            <file>file:/C:/Users/JuanDavid/Documents/NetBeansProjects/WsRegistraduria/src/wsregistraduria/WsRegistraduria.java</file>
-            <file>file:/C:/Users/JuanDavid/Documents/NetBeansProjects/WsRegistraduria/xml-resources/web-service-references/WSConsultas/wsdl/10.20.0.15/registraduria/aniwsV2/WSConsultas.wsdl</file>
-            <file>file:/C:/Users/JuanDavid/Documents/NetBeansProjects/WsRegistraduria/src/META-INF/wsdl/10.20.0.15/registraduria/aniwsV2/WSConsultas.wsdl</file>
-            <file>file:/C:/Users/JuanDavid/Documents/NetBeansProjects/WsRegistraduria/src/control/GenerarConsultas.java</file>
-            <file>file:/C:/Users/JuanDavid/Documents/NetBeansProjects/WsRegistraduria/build/generated-sources/jax-ws/webservice/WSConsultas_Service.java</file>
+            <file>file:/home/juan/Documentos/github/udistrital/wsregistraduria/src/consultasWebService/ConsultasWebService.java</file>
+            <file>file:/home/juan/Documentos/github/udistrital/wsregistraduria/src/control/GenerarConsultas.java</file>
+            <file>file:/home/juan/Documentos/github/udistrital/wsregistraduria/src/wsregistraduria/PruebasConsultas.java</file>
         </group>
     </open-files>
 </project-private>

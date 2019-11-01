@@ -24,12 +24,12 @@ public class GenerarConsultas {
     public static List<Datos> generarConsultasCedulas(List<String> nuips) throws Exception{
     ConsultarCedulas consulta= new ConsultarCedulas();
     String ip="10.20.0.15";
-    String password="password";
+    String password="Password1#";
     String usuario="UNIDISTRITAL";
     for(String nuip:nuips){
      consulta.getNuip().add(nuip);
     }
-    password=Cifrador.cifrarTexto(password,"C:\\Users/JuanDavid/Downloads/Universidad Distrital/Universidad Distrital/Universidad Distrital/Universidad Distrital/Pruebas/public_bin.key");
+    password=Cifrador.cifrarTexto(password,"/home/juan/Descargas/Universidad Distrital/Universidad Distrital/Pruebas/Pru_UD_public_bin.key");
    
     ConsultarCedulasResponse respuesta = ConsultasWebService.consultarCedulas(consulta, ip, password, usuario);
     
@@ -49,11 +49,11 @@ public class GenerarConsultas {
         CambiarContrasena nuevaContrasenaInfo= new CambiarContrasena();
         CambioClaveRequest request = new CambioClaveRequest();
         String ip="10.20.0.15";
-        String password="password";
+        String password="Password1#";
         String usuario="UNIDISTRITAL";
         
-        nuevaContraseña = Cifrador.cifrarTexto(nuevaContraseña, "public_bin.key");
-        password = Cifrador.cifrarTexto(password,"public_bin.key");
+        nuevaContraseña = Cifrador.cifrarTexto(nuevaContraseña, "/home/juan/Descargas/Universidad Distrital/Universidad Distrital/Pruebas/Pru_UD_public_bin.key");
+        password = Cifrador.cifrarTexto(password,"/home/juan/Descargas/Universidad Distrital/Universidad Distrital/Pruebas/Pru_UD_public_bin.key");
         
         request.setNuevaClave(nuevaContraseña);
         request.setConfirmarNuevaClave(nuevaContraseña);
