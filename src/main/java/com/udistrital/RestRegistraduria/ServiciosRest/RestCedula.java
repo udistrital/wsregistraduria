@@ -31,7 +31,7 @@ import webservice.Datos;
 public class RestCedula {
 
     @RequestMapping(value = "/getCedulas", method = POST, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getById(@RequestBody ArrayList<String> cedulas) {
+    public ResponseEntity<Object> getCedulas(@RequestBody ArrayList<String> cedulas) {
 
         try {
             List<Datos> datosCedulas = GenerarConsultas.generarConsultasCedulas(cedulas);
