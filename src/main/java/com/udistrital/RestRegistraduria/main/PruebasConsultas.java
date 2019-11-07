@@ -18,25 +18,25 @@ import webservice.Datos;
  * @author JuanDavid
  */
 public class PruebasConsultas {
-    public static void main(String[] args){
-    ArrayList<String> cedulas= new ArrayList<>();
-    cedulas.add("145");
-    cedulas.add("14");
-    try{
-        List<Datos> datosCedulas = GenerarConsultas.generarConsultasCedulas(cedulas);
-        for(Datos cedula : datosCedulas){
-            if(cedula.getCodError().equals("0")){
-                System.out.println("Numero de cedula "+ cedula.getNuip());
-                System.out.println("Nombres y Apellidos "+ cedula.getPrimerNombre() + " "
-                + cedula.getSegundoNombre()+ " "+cedula.getPrimerApellido()+ " "
-                + cedula.getSegundoApellido());
-            }else{
-                System.out.println("No se encontro la cedula "+ cedula.getNuip());
-            }
-        }
-    }catch(Exception ex){
-        Logger.getLogger(PruebasConsultas.class.getName()).log(Level.SEVERE,null,ex);
-    }
-    }
-    
+//    public static void main(String[] args){
+//    ArrayList<String> cedulas= new ArrayList<>();
+//    cedulas.add("145");
+//    cedulas.add("14");
+//    try{
+//        List<Datos> datosCedulas = GenerarConsultas.generarConsultasCedulas(cedulas);
+//        for(Datos cedula : datosCedulas){
+//            if(cedula.getCodError().equals("0")){
+//                System.out.println("Numero de cedula "+ cedula.getNuip());
+//                System.out.println("Nombres y Apellidos "+ cedula.getPrimerNombre() + " "
+//                + cedula.getSegundoNombre()+ " "+cedula.getPrimerApellido()+ " "
+//                + cedula.getSegundoApellido());
+//            }else{
+//                System.out.println("No se encontro la cedula "+ cedula.getNuip());
+//            }
+//        }
+//    }catch(Exception ex){
+//        Logger.getLogger(PruebasConsultas.class.getName()).log(Level.SEVERE,null,ex);
+//    }
+//    }
+//    
 }

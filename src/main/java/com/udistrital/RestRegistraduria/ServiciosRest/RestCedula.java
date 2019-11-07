@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.http.HttpStatus;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import org.springframework.http.ResponseEntity;
@@ -29,12 +31,20 @@ import webservice.Datos;
  */
 @RestController
 public class RestCedula {
+    
+    
+    @Value("${spring.application.ip}")
+    private String ip;
+    @Value("${spring.application.password}")
+    private String password;
+    @Value("${spring.application.usuario}")
+    private String usuario;
 
     @RequestMapping(value = "/getCedulas", method = POST, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getCedulas(@RequestBody ArrayList<String> cedulas) {
         System.out.println(cedulas);
         try {
-            List<Datos> datosCedulas = GenerarConsultas.generarConsultasCedulas(cedulas);
+            List<Datos> datosCedulas = GenerarConsultas.generarConsultasCedulas(cedulas,ip, password, usuario);
             List<Object> responseCedulas = new ArrayList<>();
             for (Datos cedula : datosCedulas) {
                 if (cedula.getCodError().equals("0")) {

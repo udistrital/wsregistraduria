@@ -11,6 +11,7 @@ import com.udistrital.RestRegistraduria.main.PruebaCambiosClave;
 import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +27,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RestClave {
     
+    @Value("${spring.application.ip}")
+    private String ip;
+    @Value("${spring.application.password}")
+    private String password;
+    @Value("${spring.application.usuario}")
+    private String usuario;
+    
     @RequestMapping(value="/cambiarClave",method = POST,consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> cambiarClave(@RequestBody String nuevaContrasena){
         try {
-            boolean respuesta = GenerarConsultas.cambiarContraseña(nuevaContrasena);
+            boolean respuesta = GenerarConsultas.cambiarContraseña(nuevaContrasena,ip, password, usuario);
             if(respuesta){
                 System.out.println("Contraseña cambiada exitosamente");
                 return ResponseEntity.ok("Contraseña cambiada exitosamente");

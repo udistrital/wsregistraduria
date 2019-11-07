@@ -1,0 +1,20 @@
+spring:
+   profiles: dev,default
+   application:
+      name: RestRegistraduria
+      ip: 10.20.0.15
+      password: Password1#
+      usuario: UNIDISTRITAL
+server:
+   port: 9090
+
+---
+spring: 
+   profiles: prod
+   application:
+      name: RestRegistraduria
+      ip: 10.20.0.15
+      password: Password1#
+      usuario: UNIDISTRITAL
+server: 
+   port: 4431

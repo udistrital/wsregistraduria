@@ -12,7 +12,6 @@ import java.util.List;
 import webservice.CambiarContrasena;
 import webservice.CambiarContrasenaResponse;
 import webservice.CambioClaveRequest;
-import webservice.CambioClaveResponse;
 import webservice.ConsultarCedulas;
 import webservice.ConsultarCedulasResponse;
 import webservice.Datos;
@@ -23,11 +22,11 @@ import webservice.Datos;
  */
 public class GenerarConsultas {
 
-    public static List<Datos> generarConsultasCedulas(List<String> nuips) throws Exception {
+    
+    
+    public static List<Datos> generarConsultasCedulas(List<String> nuips,String ip,String password,String usuario) throws Exception {
+        System.out.println(ip+"  "+password+"  "+usuario);
         ConsultarCedulas consulta = new ConsultarCedulas();
-        String ip = "10.20.0.15";
-        String password = "Password1#";
-        String usuario = "UNIDISTRITAL";
         for (String nuip : nuips) {
             consulta.getNuip().add(nuip);
         }
@@ -48,13 +47,9 @@ public class GenerarConsultas {
         }
     }
 
-    public static boolean cambiarContraseña(String nuevaContraseña) throws Exception {
+    public static boolean cambiarContraseña(String nuevaContraseña,String ip,String password,String usuario) throws Exception {
         CambiarContrasena nuevaContrasenaInfo = new CambiarContrasena();
         CambioClaveRequest request = new CambioClaveRequest();
-        String ip = "10.20.0.15";
-        String password = "Password1#";
-        String usuario = "UNIDISTRITAL";
-
         nuevaContraseña = Cifrador.cifrarTexto(nuevaContraseña, "C:/Users/JuanDavid/Downloads/Pru_UD_public_bin.key");
         password = Cifrador.cifrarTexto(password, "C:/Users/JuanDavid/Downloads/Pru_UD_public_bin.key");
 
