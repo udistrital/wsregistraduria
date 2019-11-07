@@ -32,28 +32,35 @@ public class RestCedula {
 
     @RequestMapping(value = "/getCedulas", method = POST, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getCedulas(@RequestBody ArrayList<String> cedulas) {
-
+        System.out.println(cedulas);
         try {
             List<Datos> datosCedulas = GenerarConsultas.generarConsultasCedulas(cedulas);
+            List<Object> responseCedulas = new ArrayList<>();
             for (Datos cedula : datosCedulas) {
                 if (cedula.getCodError().equals("0")) {
                     System.out.println("Numero de cedula " + cedula.getNuip());
                     System.out.println("Nombres y Apellidos " + cedula.getPrimerNombre() + " "
                             + cedula.getSegundoNombre() + " " + cedula.getPrimerApellido() + " "
                             + cedula.getSegundoApellido());
+                    responseCedulas.add(cedula);
                 } else {
+                    CustomErrorResponse error = new CustomErrorResponse();
+                    error.setError("No se encontro la cedula " + cedula.getNuip());
+                    error.setStatus(Integer.parseInt(cedula.getCodError()));
+                    error.setTimestamp(LocalDateTime.now());                    
+                    responseCedulas.add(error);
                     System.out.println("No se encontro la cedula " + cedula.getNuip());
                 }
-                return ResponseEntity.ok(datosCedulas);
+
             }
+            return ResponseEntity.ok(responseCedulas);
         } catch (Exception ex) {
-            CustomErrorResponse error= new CustomErrorResponse();
+            CustomErrorResponse error = new CustomErrorResponse();
             error.setError(ex.getMessage());
-            error.setStatus(HttpStatus.GATEWAY_TIMEOUT.value());
+            error.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             error.setTimestamp(LocalDateTime.now());
-            Logger.getLogger(PruebasConsultas.class.getName()).log(Level.SEVERE, null, ex);           
-            return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
+            Logger.getLogger(PruebasConsultas.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return ResponseEntity.noContent().build();
     }
 }

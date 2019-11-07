@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -30,7 +31,7 @@ public class GenerarConsultas {
         for (String nuip : nuips) {
             consulta.getNuip().add(nuip);
         }
-        password = Cifrador.cifrarTexto(password, "/home/juan/Descargas/UniversidadDistrital/Universidad Distrital/Pruebas/Pru_UD_public_bin.key");
+        password = Cifrador.cifrarTexto(password, "C:/Users/JuanDavid/Downloads/Pru_UD_public_bin.key");
 
         ConsultarCedulasResponse respuesta = ConsultasWebService.consultarCedulas(consulta, ip, password, usuario);
 
@@ -54,8 +55,8 @@ public class GenerarConsultas {
         String password = "Password1#";
         String usuario = "UNIDISTRITAL";
 
-        nuevaContraseña = Cifrador.cifrarTexto(nuevaContraseña, "/home/juan/Descargas/UniversidadDistrital/Universidad Distrital/Pruebas/Pru_UD_public_bin.key");
-        password = Cifrador.cifrarTexto(password, "/home/juan/Descargas/UniversidadDistrital/Universidad Distrital/Pruebas/Pru_UD_public_bin.key");
+        nuevaContraseña = Cifrador.cifrarTexto(nuevaContraseña, "C:/Users/JuanDavid/Downloads/Pru_UD_public_bin.key");
+        password = Cifrador.cifrarTexto(password, "C:/Users/JuanDavid/Downloads/Pru_UD_public_bin.key");
 
         request.setNuevaClave(nuevaContraseña);
         request.setConfirmarNuevaClave(nuevaContraseña);
@@ -68,7 +69,7 @@ public class GenerarConsultas {
             if (respuesta.getReturn().getEstadoCambioClave().getCodError().equals("014")) {
                 return true;
             } else {
-                throw new Exception("Ha ocurrido un error al cambiar la contraseña"
+                throw new Exception("Ha ocurrido un error al cambiar la contraseña "
                         + respuesta.getReturn().getEstadoCambioClave().getCodError()
                         + " " + respuesta.getReturn().getEstadoCambioClave().getDescripcionError());
             }

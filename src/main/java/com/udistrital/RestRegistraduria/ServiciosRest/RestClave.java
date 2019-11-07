@@ -38,9 +38,9 @@ public class RestClave {
             Logger.getLogger(PruebaCambiosClave.class.getName()).log(Level.SEVERE, null, ex);
             CustomErrorResponse error= new CustomErrorResponse();
             error.setError(ex.getMessage());
-            error.setStatus(HttpStatus.GATEWAY_TIMEOUT.value());
+            error.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             error.setTimestamp(LocalDateTime.now());
-            return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(error,HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return ResponseEntity.noContent().build();
     }
