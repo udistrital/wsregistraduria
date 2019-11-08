@@ -5,8 +5,9 @@ spring:
       ip: 10.20.0.15
       password: Password1#
       usuario: UNIDISTRITAL
+      key: Pru_UD_public_bin.key
 server:
-   port: 9090
+   port: 8080
 
 ---
 spring: 
@@ -16,5 +17,6 @@ spring:
       ip: 10.20.0.15
       password: Password1#
       usuario: UNIDISTRITAL
+      key: 
 server: 
    port: 4431

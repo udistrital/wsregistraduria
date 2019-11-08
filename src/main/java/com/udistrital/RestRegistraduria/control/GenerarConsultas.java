@@ -24,13 +24,13 @@ public class GenerarConsultas {
 
     
     
-    public static List<Datos> generarConsultasCedulas(List<String> nuips,String ip,String password,String usuario) throws Exception {
+    public static List<Datos> generarConsultasCedulas(List<String> nuips,String ip,String password,String usuario,String rutakey) throws Exception {
         System.out.println(ip+"  "+password+"  "+usuario);
         ConsultarCedulas consulta = new ConsultarCedulas();
         for (String nuip : nuips) {
             consulta.getNuip().add(nuip);
         }
-        password = Cifrador.cifrarTexto(password, "C:/Users/JuanDavid/Downloads/Pru_UD_public_bin.key");
+        password = Cifrador.cifrarTexto(password,rutakey);
 
         ConsultarCedulasResponse respuesta = ConsultasWebService.consultarCedulas(consulta, ip, password, usuario);
 
@@ -47,11 +47,11 @@ public class GenerarConsultas {
         }
     }
 
-    public static boolean cambiarContraseña(String nuevaContraseña,String ip,String password,String usuario) throws Exception {
+    public static boolean cambiarContraseña(String nuevaContraseña,String ip,String password,String usuario, String rutakey) throws Exception {
         CambiarContrasena nuevaContrasenaInfo = new CambiarContrasena();
         CambioClaveRequest request = new CambioClaveRequest();
-        nuevaContraseña = Cifrador.cifrarTexto(nuevaContraseña, "C:/Users/JuanDavid/Downloads/Pru_UD_public_bin.key");
-        password = Cifrador.cifrarTexto(password, "C:/Users/JuanDavid/Downloads/Pru_UD_public_bin.key");
+        nuevaContraseña = Cifrador.cifrarTexto(nuevaContraseña, rutakey);
+        password = Cifrador.cifrarTexto(password, rutakey);
 
         request.setNuevaClave(nuevaContraseña);
         request.setConfirmarNuevaClave(nuevaContraseña);

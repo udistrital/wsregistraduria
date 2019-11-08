@@ -39,12 +39,14 @@ public class RestCedula {
     private String password;
     @Value("${spring.application.usuario}")
     private String usuario;
+    @Value("${spring.application.key}")
+    private String key;
 
     @RequestMapping(value = "/getCedulas", method = POST, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getCedulas(@RequestBody ArrayList<String> cedulas) {
-        System.out.println(cedulas);
+        String rutaKey = System.getProperty("user.dir")+key;
         try {
-            List<Datos> datosCedulas = GenerarConsultas.generarConsultasCedulas(cedulas,ip, password, usuario);
+            List<Datos> datosCedulas = GenerarConsultas.generarConsultasCedulas(cedulas,ip, password, usuario,rutaKey);
             List<Object> responseCedulas = new ArrayList<>();
             for (Datos cedula : datosCedulas) {
                 if (cedula.getCodError().equals("0")) {

@@ -33,11 +33,14 @@ public class RestClave {
     private String password;
     @Value("${spring.application.usuario}")
     private String usuario;
+    @Value("${spring.application.key}")
+    private String key;
     
     @RequestMapping(value="/cambiarClave",method = POST,consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> cambiarClave(@RequestBody String nuevaContrasena){
+        String rutakey = System.getProperty("user.dir")+key;
         try {
-            boolean respuesta = GenerarConsultas.cambiarContraseña(nuevaContrasena,ip, password, usuario);
+            boolean respuesta = GenerarConsultas.cambiarContraseña(nuevaContrasena,ip, password, usuario, rutakey);
             if(respuesta){
                 System.out.println("Contraseña cambiada exitosamente");
                 return ResponseEntity.ok("Contraseña cambiada exitosamente");
