@@ -36,7 +36,6 @@ public class RestClave {
     @Value("${spring.application.key}")
     private String key;
     
-    @RequestMapping(value="/cambiarClave",method = POST,consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> cambiarClave(@RequestBody String nuevaContrasena){
         String rutakey = System.getProperty("user.dir")+key;
         try {

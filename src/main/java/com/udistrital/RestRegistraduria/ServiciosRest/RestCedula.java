@@ -5,11 +5,13 @@
  */
 package com.udistrital.RestRegistraduria.ServiciosRest;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.udistrital.RestRegistraduria.control.GenerarConsultas;
 import com.udistrital.RestRegistraduria.control.errors.CustomErrorResponse;
 import com.udistrital.RestRegistraduria.main.PruebasConsultas;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,12 +44,13 @@ public class RestCedula {
     @Value("${spring.application.key}")
     private String key;
 
-    @RequestMapping(value = "/getCedulas", method = POST, consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/getCedulas", method = POST, consumes = APPLICATION_JSON_VALUE, produces=APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getCedulas(@RequestBody ArrayList<String> cedulas) {
         String rutaKey = System.getProperty("user.dir")+key;
         try {
             List<Datos> datosCedulas = GenerarConsultas.generarConsultasCedulas(cedulas,ip, password, usuario,rutaKey);
             List<Object> responseCedulas = new ArrayList<>();
+            HashMap<Object, Object> respuestaJson = new HashMap<>();
             for (Datos cedula : datosCedulas) {
                 if (cedula.getCodError().equals("0")) {
                     System.out.println("Numero de cedula " + cedula.getNuip());
@@ -62,11 +65,14 @@ public class RestCedula {
                     error.setTimestamp(LocalDateTime.now());                    
                     responseCedulas.add(error);
                     System.out.println("No se encontro la cedula " + cedula.getNuip());
+                    return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
                 }
 
             }
-            return ResponseEntity.ok(responseCedulas);
+            respuestaJson.put("cedulas", responseCedulas);
+            return ResponseEntity.ok(respuestaJson);
         } catch (Exception ex) {
+            
             CustomErrorResponse error = new CustomErrorResponse();
             error.setError(ex.getMessage());
             error.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
